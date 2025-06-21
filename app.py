@@ -4,6 +4,10 @@ import random
 import re
 import os
 
+# === Cấu hình ===
+excel_file = "Ngan_hang_mon_4.xlsx"
+image_folder = "images"
+
 # === Load Excel đa sheet ===
 @st.cache_data(ttl=0)
 def load_sheets(path):
@@ -18,8 +22,15 @@ def reload_excel():
     else:
         df_all = all_sheets[sheet_name]
 
-excel_file = "Ngan_hang_mon_4.xlsx"
-image_folder = "images"
+# === Load dữ liệu (có kiểm lỗi) ===
+try:
+    all_sheets = load_sheets(excel_file)
+except FileNotFoundError:
+    st.error(f"Không tìm thấy file Excel: {excel_file}")
+    st.stop()
+except Exception as e:
+    st.error(f"Lỗi khi đọc Excel: {e}")
+    st.stop()
 
 # === Sidebar điều khiển ===
 st.sidebar.title("Tùy chọn")
@@ -100,9 +111,9 @@ for q in questions:
             if correct == "":
                 st.info("Câu hỏi này chưa có đáp án trong file. Vui lòng bổ sung sau.")
             elif selected == correct:
-                st.success("\u2714 Đúng rồi!")
+                st.success("✔ Đúng rồi!")
             else:
-                st.error(f"\u2716 Sai! Đáp án đúng là: {correct}")
+                st.error(f"✖ Sai! Đáp án đúng là: {correct}")
     else:
         st.markdown(text)
 
