@@ -18,9 +18,8 @@ def reload_excel():
     else:
         df_all = all_sheets[sheet_name]
 
-excel_file = r"C:\Users\bena\OneDrive\BSNT Ngoại - Sản UMP 2025\Môn 4 - Sản phụ khoa\(!) Siêu cấp luyện đề\Ngân hàng câu hỏi môn 4 full.xlsx"
-image_folder = r"C:\Users\bena\OneDrive\BSNT Ngoại - Sản UMP 2025\Môn 4 - Sản phụ khoa\(!) Siêu cấp luyện đề\images"
-all_sheets = load_sheets(excel_file)
+excel_file = "Ngan_hang_mon_4.xlsx"
+image_folder = "images"
 
 # === Sidebar điều khiển ===
 st.sidebar.title("Tùy chọn")
